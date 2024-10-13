@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normal Skin Recommendations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .hero-image {
+            height: 80vh;
+            background-image: url('https://sublimelife.in/cdn/shop/articles/Header-Image-3_81964c43-6115-409a-ae39-ab1c34197151.jpg?v=1621587001&width=1300');
+            background-size: cover;
+            background-position: center;
+            padding-top: 56px;
+        }
+
+        .hero-text {
+            text-align: right;
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-text h1,
+        .hero-text h2 {
+            opacity: 0;
+            animation: fadeInUp 2s ease-in-out forwards;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            animation-delay: 0.5s;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-top: 0.5rem;
+            animation-delay: 1s;
+        }
+
+        .description-text {
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: right;
+            padding-left: 20px;
+            font-family: 'Poppins', sans-serif;
+            opacity: 0;
+            animation: fadeInUp 2s ease-in-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h3 {
+            font-size: 2.1rem;
+            text-align: left;
+            margin-top: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .content h2 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .content {
+            padding-top: 56px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .col-md-4 h5 {
+            margin-top: 15px;
+            text-align: center;
+            z-index: 3;
+            position: relative;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .row {
+            margin-bottom: 100px;
+        }
+
+        .col-md-4 {
+            padding-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 60vh;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.2rem;
+            }
+
+            .description-text {
+                font-size: 0.8rem;
+            }
+
+            .content h2 {
+                font-size: 2.5rem;
+            }
+
+            .content h3 {
+                font-size: 1.5rem;
+            }
+
+            .product-image {
+                max-height: 200px;
+            }
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+            color: aliceblue;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="javascript:history.back()" class="back-button">
+        &#8592; Back
+    </a>
+
+    <div class="hero-image">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-md-6 offset-md-6">
+                    <div class="hero-text">
+                        <h1>Normal Skin</h1>
+                    </div>
+                    <div class="description-text">
+                        <p>Normal skin is balanced, with good hydration and a healthy barrier. It has a smooth, even texture, small pores, and retains moisture well, giving it a soft, supple feel. People with normal skin rarely experience breakouts or sensitivity but may occasionally face dryness or blemishes due to environmental or hormonal changes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content my-5">
+        <h2 class="font-weight-bold fade-in">Build your routine</h2>
+
+        <!-- Facewash Recommendations -->
+        <h3 class="fade-in">Facewash Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.face_link }}" target="_blank">
+                        <img src="{{ product.face_image }}" alt="{{ product.facewash_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.facewash_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Moisturizer Recommendations -->
+        <h3 class="fade-in">Moisturizer Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.moisturizer_link }}" target="_blank">
+                        <img src="{{ product.moisturizer_image }}" alt="{{ product.moisturizer_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.moisturizer_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Serum Recommendations -->
+        <h3 class="fade-in">Serum Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.serum_link }}" target="_blank">
+                        <img src="{{ product.serum_image }}" alt="{{ product.serum_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.serum_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Sunscreen Recommendations -->
+        <h3 class="fade-in">Sunscreen Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.sunscreen_link }}" target="_blank">
+                        <img src="{{ product.sunscreen_image }}" alt="{{ product.sunscreen_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.sunscreen_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Aura. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

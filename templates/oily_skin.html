@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oily Skin Recommendations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+        }
+
+        .hero-image {
+            height: 80vh;
+            background-image: url('https://images-us.nivea.com/-/media/miscellaneous/media-center-items/e/7/c/7607a566607c47e5924096b9dd2000a2-screen.jpg?rx=0&ry=0&rw=1600&rh=625'); /* Hero image URL */
+            background-size: cover;
+            background-position: center;
+            padding-top: 56px; /* Ensure content is not covered */
+        }
+
+        .hero-text {
+            text-align: right; /* Align text to the right */
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Start hidden */
+            animation: fadeInUp 2s ease-in-out forwards; /* Animation */
+        }
+
+        .hero-text h1 {
+            font-size: 4rem; /* Bigger size for the h1 tag */
+            font-weight: bold;
+            animation-delay: 0.5s; /* Delay for h1 animation */
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem; /* Slightly smaller size for the 'Recommendations' */
+            font-weight: normal;
+            margin-top: 0.5rem; /* Adjust the space between 'Oily Skin' and 'Recommendations' */
+            animation-delay: 1s; /* Delay for h2 animation */
+        }
+
+        .description-text {
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: right; /* Align text to the right */
+            padding-left: 20px; /* Add some padding for spacing */
+            font-family: 'Poppins', sans-serif;
+            opacity: 0; /* Start hidden */
+            animation: fadeInUp 2s ease-in-out forwards; /* Animation */
+            animation-delay: 1.5s; /* Delay for description appearance */
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h2 {
+            font-size: 3.5rem; /* Increased size for "Build your routine" */
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700; /* Bold font */
+            font-family: 'Montserrat', sans-serif; /* Different font family for the title */
+        }
+
+        .content h3 {
+            font-size: 2.1rem; /* Smaller size for the recommendation headings */
+            text-align: left; /* Align recommendation headings to the left */
+            margin-top: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto; /* Change to auto to maintain aspect ratio */
+            max-height: 300px; /* Set a max height */
+            object-fit: contain; /* Ensure the image fits inside the container without cropping */
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+            position: relative;
+            z-index: 1; /* Ensures the image stays on top */
+        }
+
+        .product-image:hover {
+            transform: scale(1.05); /* Slightly less scale to avoid text overlap */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+            z-index: 2; /* Ensure the image stays above the text */
+        }
+
+        /* Adjust the h5 text to ensure it's always on top */
+        .col-md-4 h5 {
+            margin-top: 15px;
+            text-align: center;
+            z-index: 3; /* Keep text above the image */
+            position: relative;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Add animation to the product sections */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        /* Keyframe for fade-in animation */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add spacing between rows */
+        .row {
+            margin-bottom: 100px; /* Increased space between rows */
+        }
+
+        /* Add padding between columns */
+        .col-md-4 {
+            padding-bottom: 50px; /* Increased space between columns */
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 60vh; /* Reduce height for smaller screens */
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem; /* Smaller font size for smaller screens */
+            }
+
+            .hero-text h2 {
+                font-size: 1.2rem; /* Smaller font size for smaller screens */
+            }
+
+            .description-text {
+                font-size: 0.8rem; /* Smaller font size for description */
+            }
+
+            .content h2 {
+                font-size: 2.5rem; /* Smaller font size for content headings */
+            }
+
+            .content h3 {
+                font-size: 1.5rem; /* Smaller font size for recommendation headings */
+            }
+
+            .product-image {
+                max-height: 200px; /* Reduce max height of images */
+            }
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+            color: #333; /* Text color */
+            padding: 10px 15px; /* Padding around the text */
+            border-radius: 10px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            font-family: 'Poppins', sans-serif; /* Match your page's font */
+            font-size: 1rem; /* Adjust size as needed */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+            z-index: 10; /* Make sure it's above other elements */
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 1.5s ease-in-out forwards; 
+            animation-delay: 1.5s; 
+        }
+
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.5); /* Change background on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            color: aliceblue;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="javascript:history.back()" class="back-button">
+        &#8592; Back
+    </a>
+
+    <div class="hero-image">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-md-6 offset-md-6"> <!-- Offset to push content to the right -->
+                    <div class="hero-text">
+                        <h1>Oily Skin</h1>
+                        <!-- <h2>Recommendations</h2> -->
+                    </div>
+                    <div class="description-text">
+                        <p>Oily skin results from hyperactive sebaceous glands, causing excess sebum production. It appears glossy with enlarged pores and is prone to blackheads, pimples, and blemishes. While this sheen may be appealing, it can lead to skin issues. However, oily skin often ages slower due to its natural moisture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content my-5">
+        <h2 class="font-weight-bold fade-in">Build your routine</h2>
+
+        <!-- Facewash Recommendations -->
+        <h3 class="fade-in">Facewash Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.face_link }}" target="_blank">
+                        <img src="{{ product.face_image }}" alt="{{ product.facewash_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.facewash_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Moisturizer Recommendations -->
+        <h3 class="fade-in">Moisturizer Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.moisturizer_link }}" target="_blank">
+                        <img src="{{ product.moisturizer_image }}" alt="{{ product.moisturizer_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.moisturizer_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Serum Recommendations -->
+        <h3 class="fade-in">Serum Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.serum_link }}" target="_blank">
+                        <img src="{{ product.serum_image }}" alt="{{ product.serum_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.serum_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Sunscreen Recommendations -->
+        <h3 class="fade-in">Sunscreen Recommendations</h3>
+        <div class="row fade-in">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a href="{{ product.sunscreen_link }}" target="_blank">
+                        <img src="{{ product.sunscreen_image }}" alt="{{ product.sunscreen_name }}" class="img-fluid product-image">
+                    </a>
+                    <h5>{{ product.sunscreen_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Aura. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

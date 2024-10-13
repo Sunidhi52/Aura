@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Aura - Skincare Suggestions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .section {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .team-member {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .popup-content {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.4s ease;
+        }
+        .popup-content img {
+            width: 140px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .popup-content h3 {
+            margin-bottom: 10px;
+        }
+        .popup-content p {
+            font-size: 14px;
+            color: #555;
+        }
+        .popup-overlay.active {
+            opacity: 1;
+        }
+        .popup-overlay.active .popup-content {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+        }
+        .close-button:hover {
+            background-color: #000000;
+            color: #fff;
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #3c3d3d;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* transition: background-color 0.3s ease; */
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #1c1d1d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-5 animate_animated animate_fadeIn">Welcome to Aura</h1>
+        <p class="text-center animate_animated animatefadeIn animate_delay-1s">At Aura, we understand that skincare is personal. Instead of offering generic products, we are here to guide you towards skincare solutions that suit your unique needs. Our mission is to provide thoughtful, expert-backed recommendations so that you can choose products that are right for your skin. Whether you're looking for hydration, anti-aging, or clarity, we curate the best products based on your preferences.</p>
+
+        <div class="section animate_animated animatefadeInUp animate_delay-2s">
+            <h2 class="text-center">Why We Chose Aura</h2>
+            <p class="text-center">The name "Aura" reflects our commitment to helping you discover your natural radiance. Aura is all about finding the perfect skincare routine that enhances your inner glow. Our expert team sifts through countless products, reviews, and feedback to recommend only the best options that truly work. With Aura, you can trust that we've done the research for you, making skincare less overwhelming and more empowering. We are dedicated to suggesting products that not only improve your skin but also promote confidence. Our team is resilient in keeping up with the latest in skincare research and product development, always focusing on offering you recommendations that are backed by science and real results. Whether it's a cleanser, serum, or moisturizer, we aim to suggest only the most effective products for your skincare goals.</p>
+        </div>
+
+        <div class="section animate_animated animatefadeInUp animate_delay-4s">
+            <h2 class="text-center">Meet Our Team</h2>
+            <p class="text-center">Our team of skincare enthusiasts is passionate about finding the right solutions for every skin type. Each team member brings their own expertise to the table, ensuring that our recommendations are well-rounded and tailored to individual needs.</p>
+        </div>
+
+            <!-- Back Button -->
+        <a href="#" id="backButton" class="back-button" style="display: none;" onclick="goBack()">← Back</a>
+
+            <div class="row">
+                <!-- Team Member 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member animate_animated animatefadeIn animate_delay-5s">
+                        <img src="images/suni.jpg" alt="Sunidhi Sunil" class="img-fluid">
+                        <h3>Sunidhi Sunil</h3>
+                        <p>Backend Developer</p>
+                    </div>
+                    <div class="popup-overlay">
+                        <div class="popup-content">
+                            <button class="close-button">&times;</button>
+                            <img src="images/suni.jpg" alt="Sunidhi Sunil" class="img-fluid">
+                            <h3>Sunidhi Sunil</h3>
+                            <p>Backend Developer</p>
+                            <p>Sunidhi ensures that Aura's backend infrastructure operates smoothly, enabling seamless product suggestions and a flawless user experience. As a backend developer, she is responsible for managing databases, server logic, and ensuring fast, reliable access to skincare recommendations. Passionate about skincare herself, Sunidhi is dedicated to making Aura's suggestions easily accessible, with a strong focus on performance, security, and scalability behind the scenes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member animate_animated animatefadeIn animate_delay-5s">
+                        <img src="images/pittu.jpg" alt="Prithvi Gowda" class="img-fluid">
+                        <h3>Prithvi Gowda</h3>
+                        <p>Front End & React</p>
+                    </div>
+                    <div class="popup-overlay">
+                        <div class="popup-content">
+                            <button class="close-button">&times;</button>
+                            <img src="images/pittu.jpg" alt="Prithvi Gowda" class="img-fluid">
+                            <h3>Prithvi Gowda</h3>
+                            <p>Front End & React</p>
+                            <p>Prithvi ensures that our recommendations are visually engaging and intuitive by creating dynamic, user-friendly interfaces with React. His work allows users to easily explore and interact with Aura's data-driven skincare suggestions. By focusing on responsive design and smooth user experiences, Prithvi helps us consistently deliver the best product recommendations for a wide range of skincare concerns, making sure our platform looks great and works seamlessly across all devices.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member animate_animated animatefadeIn animate_delay-5s">
+                        <img src="images/muks.jpg" alt="Mukul Singh" class="img-fluid">
+                        <h3>Mukul Singh</h3>
+                        <p>Creative Director</p>
+                    </div>
+                    <div class="popup-overlay">
+                        <div class="popup-content">
+                            <button class="close-button">&times;</button>
+                            <img src="images/muks.jpg" alt="Mukul Singh" class="img-fluid">
+                            <h3>Mukul Singh</h3>
+                            <p>Creative Director</p>
+                            <p>Mukul works behind the scenes to shape Aura's visual identity and ensure that our product suggestions resonate with our audience. As the Creative Director, he is dedicated to crafting a cohesive and engaging brand experience that reflects our values and mission. Mukul's keen eye for design and attention to detail help create compelling visuals that effectively communicate our skincare recommendations, ensuring you receive the most reliable and aesthetically pleasing suggestions possible.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member animate_animated animatefadeIn animate_delay-5s">
+                        <img src="images/shwe.jpg" alt="Shwetha Puthi" class="img-fluid">
+                        <h3>Shwetha Puthi</h3>
+                        <p>Content Manager</p>
+                    </div>
+                    <div class="popup-overlay">
+                        <div class="popup-content">
+                            <button class="close-button">&times;</button>
+                            <img src="images/shwe.jpg" alt="Shwetha Puthi" class="img-fluid">
+                            <h3>Shwetha Puthi</h3>
+                            <p>Content Manager</p>
+                            <p>Shwetha curates and manages the content that connects you with the perfect skincare products. As our Content Manager, she ensures that all product information, articles, and recommendations are informative and tailored to meet your unique skin concerns and preferences. By integrating valuable insights and user feedback, Shwetha's work allows us to provide personalized content that enhances your skincare journey, making sure you receive the most relevant and engaging suggestions possible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the back button
+            const backButton = document.getElementById('backButton');
+
+            // Set a timeout to display the back button after the content animations
+            setTimeout(() => {
+                backButton.style.display = 'block';  // Show the button
+                backButton.classList.add('animate__fadeInUp');  // Optional: Add an animation
+            }, 6000);  // Show the button after 6 seconds (adjust if needed)
+        });
+
+        // Go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamMembers = document.querySelectorAll('.team-member');
+            const popupOverlays = document.querySelectorAll('.popup-overlay');
+            const closeButtons = document.querySelectorAll('.close-button');
+
+            teamMembers.forEach((member, index) => {
+                const overlay = popupOverlays[index];
+
+                member.addEventListener('mouseenter', () => {
+                    overlay.style.display = 'flex';
+                    setTimeout(() => {
+                        overlay.classList.add('active');
+                    }, 10);
+                });
+
+                closeButtons[index].addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 300);
+                });
+
+                overlay.addEventListener('mouseleave', () => {
+                    overlay.classList.remove('active');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

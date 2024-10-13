@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determine Your Skin Type</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            position: relative;
+            background: url('https://images.squarespace-cdn.com/content/v1/5d52feb1aa6f990001929012/0bf966c8-e574-4c8a-97e7-1a1164337740/image001+%283%29.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            max-width: 900px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 2;
+            font-size: x-large;
+            animation: fadeIn 1.5s ease;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #e5e0e0;
+            font-weight: bold;
+        }
+
+        .scrollable-questions {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 15px;
+            text-align: left;
+        }
+
+        .form-check {
+            text-align: left;
+        }
+
+        label {
+            font-weight: 600;
+            color: #e5e0e0;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 30%;
+            align-items: center;
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #282626;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #ffffff;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0);
+            border-radius: 30px;
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        .learn-more {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .learn-more a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: background-color 0.3s;
+            font-size: 20px;
+        }
+
+        .learn-more a:hover {
+            background-color: rgba(79, 76, 76, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #000000;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+            color: aliceblue;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries for Responsive Design */
+
+        /* Small devices (phones, less than 768px) */
+        @media (max-width: 767.98px) {
+            body {
+                padding: 20px;
+                justify-content: flex-start;
+            }
+
+            .container {
+                font-size: medium;
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .result {
+                font-size: 18px;
+            }
+
+            .back-button {
+                font-size: 0.5rem;
+                top: 10px;
+                left: 10px;
+                background-color: #000000;
+                color: white;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .container {
+                max-width: 85%;
+                font-size: larger;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 70%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="javascript:history.back()" class="back-button">
+        &#8592; Back
+    </a>
+
+    <div class="container">
+        <h1>Find Out Your Skin Type</h1>
+        <form id="skinTypeForm">
+            <div class="scrollable-questions">
+                <div class="mb-4">
+                    <label>1. How does your skin feel when you wake up?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="dry" required>
+                        <label class="form-check-label">Dry or tight</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="normal">
+                        <label class="form-check-label">Normal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="oily">
+                        <label class="form-check-label">Oily</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="combination">
+                        <label class="form-check-label">Dry in some areas, oily in others</label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="mb-4">
+                    <label>2. How often does your skin get shiny during the day?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="dry" required>
+                        <label class="form-check-label">Rarely</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="normal">
+                        <label class="form-check-label">Sometimes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="oily">
+                        <label class="form-check-label">Often</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="combination">
+                        <label class="form-check-label">Only in T-zone (forehead, nose, chin)</label>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="mb-4">
+                    <label>3. Do you experience flakiness or rough patches?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="dry" required>
+                        <label class="form-check-label">Yes, often</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="normal">
+                        <label class="form-check-label">Sometimes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="oily">
+                        <label class="form-check-label">Rarely or never</label>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="mb-4">
+                    <label>4. How does your skin react to weather changes?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="dry" required>
+                        <label class="form-check-label">Becomes very dry in cold weather</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="normal">
+                        <label class="form-check-label">Stays mostly consistent</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="oily">
+                        <label class="form-check-label">Becomes oily in hot weather</label>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="mb-4">
+                    <label>5. How large are the pores on your skin?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="dry" required>
+                        <label class="form-check-label">Small, almost invisible</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="normal">
+                        <label class="form-check-label">Moderate</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="oily">
+                        <label class="form-check-label">Large and visible</label>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="mb-4">
+                    <label>6. How sensitive is your skin to new products or treatments?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question6" value="dry" required>
+                        <label class="form-check-label">Very sensitive</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question6" value="normal">
+                        <label class="form-check-label">Not very sensitive</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question6" value="oily">
+                        <label class="form-check-label">Rarely sensitive</label>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="mb-4">
+                    <label>7. How does your skin feel after washing your face?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question7" value="dry" required>
+                        <label class="form-check-label">Dry and tight</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question7" value="normal">
+                        <label class="form-check-label">Comfortable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question7" value="oily">
+                        <label class="form-check-label">Greasy</label>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="mb-4">
+                    <label>8. Do you often break out or have acne?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question8" value="dry" required>
+                        <label class="form-check-label">Rarely</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question8" value="normal">
+                        <label class="form-check-label">Sometimes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question8" value="oily">
+                        <label class="form-check-label">Often</label>
+                    </div>
+                </div>
+
+                <!-- Question 9 (New) -->
+                <div class="mb-4">
+                    <label>9. How would you describe the pores on different areas of your face?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question9" value="dry" required>
+                        <label class="form-check-label">Small and tight all over</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question9" value="normal">
+                        <label class="form-check-label">Moderate and consistent all over</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question9" value="oily">
+                        <label class="form-check-label">Large and visible all over</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question9" value="combination">
+                        <label class="form-check-label">Larger in T-zone, smaller on cheeks</label>
+                    </div>
+                </div>
+
+                <!-- Question 10 (New) -->
+                <div class="mb-4">
+                    <label>10. How does your skin react to moisturizer?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question10" value="dry" required>
+                        <label class="form-check-label">Absorbs quickly, skin still feels dry</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question10" value="normal">
+                        <label class="form-check-label">Absorbs well, skin feels balanced</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question10" value="oily">
+                        <label class="form-check-label">Makes skin feel greasy</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question10" value="combination">
+                        <label class="form-check-label">Some areas absorb well, others become greasy</label>
+                    </div>
+                </div>
+
+                <!-- Questions 3-10 remain unchanged -->
+                <!-- ... -->
+
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="result" id="result"></div>
+        <div class="learn-more" id="learnMore">
+            <a href="#" id="learnMoreLink">Learn More</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('skinTypeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let dryScore = 0;
+            let normalScore = 0;
+            let oilyScore = 0;
+            let combinationScore = 0;
+
+            const questions = [
+                { name: 'question1', weight: { dry: 2, normal: 0, oily: -2, combination: 1 } },
+                { name: 'question2', weight: { dry: -2, normal: 0, oily: 2, combination: 1 } },
+                { name: 'question3', weight: { dry: 0, normal: 1, oily: 0, combination: 2 } },
+                { name: 'question4', weight: { dry: 3, normal: 1, oily: -3, combination: 1 } },
+                { name: 'question5', weight: { dry: 2, normal: 0, oily: -1, combination: 2 } },
+                { name: 'question6', weight: { dry: -1, normal: 0, oily: 3, combination: 2 } },
+                { name: 'question7', weight: { dry: -2, normal: 2, oily: 0, combination: 1 } },
+                { name: 'question8', weight: { dry: -1, normal: 0, oily: 3, combination: 2 } },
+                { name: 'question9', weight: { dry: 2, normal: 0, oily: -2, combination: 3 } },
+                { name: 'question10', weight: { dry: 2, normal: 0, oily: -2, combination: 3 } }
+            ];
+
+            questions.forEach(question => {
+                const selectedValue = document.querySelector(`input[name="${question.name}"]:checked`);
+                if (selectedValue) {
+                    const value = selectedValue.value;
+                    if (value in question.weight) {
+                        dryScore += (value === 'dry') ? question.weight[value] : 0;
+                        normalScore += (value === 'normal') ? question.weight[value] : 0;
+                        oilyScore += (value === 'oily') ? question.weight[value] : 0;
+                        combinationScore += (value === 'combination') ? question.weight[value] : 0;
+                    }
+                }
+            });
+
+            let skinType = '';
+            let maxScore = Math.max(dryScore, normalScore, oilyScore, combinationScore);
+
+            if (combinationScore === maxScore && combinationScore > 0) {
+                skinType = 'Combination Skin';
+            } else if (dryScore === maxScore) {
+                skinType = 'Dry Skin';
+            } else if (oilyScore === maxScore) {
+                skinType = 'Oily Skin';
+            } else {
+                skinType = 'Normal Skin';
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = `Your skin type is: ${skinType}`;
+            resultDiv.style.display = 'block';
+            resultDiv.style.fontWeight = '600'
+
+            // Add learn more link
+            const learnMoreDiv = document.getElementById('learnMore');
+            const learnMoreLink = document.getElementById('learnMoreLink');
+            
+            let learnMoreUrl = '#';
+            switch(skinType) {
+                case 'Dry Skin':
+                    learnMoreUrl = '/dry';
+                    break;
+                case 'Oily Skin':
+                    learnMoreUrl = '/oily';
+                    break;
+                case 'Normal Skin':
+                    learnMoreUrl = '/normal';
+                    break;
+                case 'Combination Skin':
+                    learnMoreUrl = '/combination';
+                    break;
+            }
+            
+            learnMoreLink.href = learnMoreUrl;
+            learnMoreDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Skincare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .navbar {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: white;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(255, 255, 255) !important; /* Default color when not scrolled */
+        }
+
+        .navbar-brand {
+            color: rgb(0, 0, 0) !important; /* Default color for 'Aura' when not scrolled */
+            font-weight: 600;
+        }
+
+        .navbar-scrolled {
+            background-color: rgba(148, 101, 80, 0.9) !important; /* White background on scroll */
+        }
+
+        .navbar-scrolled .navbar-light .navbar-nav .nav-link {
+            color: black !important; /* Change link color to black on scroll */
+        }
+
+        .navbar-scrolled .navbar-brand {
+            color: black !important; /* Change 'Aura' color to black on scroll */
+        }
+
+        /* Line animation for nav items except Login */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .nav-link:not(.btn) {
+            position: relative;
+        }
+
+        .nav-link:not(.btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:not(.btn):hover::after {
+            width: 100%;
+        }
+
+        .navbar-scrolled .nav-link:not(.btn)::after {
+            background-color: black;
+        }
+
+        .navbar-scrolled .nav-link:not(.btn) {
+            color: black !important;
+        }
+
+        /* For login button */
+        .nav-item1 .nav-link {
+            color: white !important;
+        }
+
+        .navbar-scrolled .nav-item1 .nav-link {
+            color: black !important;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 80vh;
+            background-image: url('https://monatglobal.com/wp-content/uploads/2021/09/Hydrate-Repair-Body-Serum-Benefits.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            text-align: start;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .scrollable-section {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        .scrollable-item {
+            display: inline-block;
+            width: 250px;
+            margin-right: 50px;
+            vertical-align: top;
+            white-space: normal;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .scrollable-item:hover {
+            transform: translateY(-6px);
+        }
+        .scrollable-item1:hover {
+            transform: translateY(-5px);
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        .navbar-nav {
+            gap: 55px;
+        }
+
+        .nav-item1 {
+            margin-right: 10px;
+            border-radius: 15px;
+            /* transition: transform 0.3s ease; */
+        }
+
+        .nav-item1:hover {
+            border: 1.5px solid white;
+            color: black;
+            /* transition: transform 0.3s ease; */
+        }
+
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+
+        .scrollable-item img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scrollable-item:hover img {
+            transform: scale(1.0);
+            /* box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
+        }
+        .scrollable-item1:hover img {
+            transform: scale(1.0);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .scrollable-item1 img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .scrollable-item1 {
+            display: inline-block;
+            width: 250px;
+            margin-right: 50px;
+            vertical-align: top;
+            white-space: normal;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-toggler-icon{
+            color: white;
+        }
+    </style>   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-transparent">
+        <div class="container">
+            <a class="navbar-brand" href="#">Aura.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="bodycare.html">BodyCare</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">SkinCare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/find">Find Your Skin Type</a>
+                    </li>
+                    <li class="nav-item1">
+                        <a class="nav-link btn btn-outline-white" href="#login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-image">
+        <div class="hero-text">
+            <!-- <h1>Define your Aura with SkinCare</h1> -->
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="mb-4">Our Recommendations</h2>
+        <div class="scrollable-section">
+            {% for recommendation in recommendations %}
+                <div class="scrollable-item">
+                    <a href="{{ recommendation.purchase_link }}" target="_blank">
+                        <img src="{{ recommendation.product_image_url }}" alt="{{ recommendation.product_name }}" class="img-fluid mb-2">
+                    </a>
+                    <h5>{{ recommendation.product_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+
+    <div class="container my-5">
+        <h2 class="mb-4">Health Care</h2>
+        <div class="scrollable-section">
+            {% for product in healthcare_products %}
+                <div class="scrollable-item1">
+                    <a href="{{ product.purchase_link }}" target="_blank">
+                        <img src="{{ product.product_image_url }}" alt="{{ product.product_name }}" class="img-fluid mb-2">
+                    </a>
+                    <h5>{{ product.product_name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
